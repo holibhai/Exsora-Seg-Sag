@@ -1,9 +1,10 @@
 package com.crudoperation.jw.dto;
 
 import com.crudoperation.jw.model.Address;
+import com.crudoperation.jw.model.Role;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.management.relation.Role;
+import com.crudoperation.jw.model.User;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserAccountDto {
