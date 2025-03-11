@@ -1,26 +1,30 @@
 package com.crudoperation.jw.controller;
 
+import com.crudoperation.jw.dto.LoginRequest;
 import com.crudoperation.jw.dto.Response;
 import com.crudoperation.jw.service.UserService;
 import com.crudoperation.jw.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/authentication")
+public class AuthenticationController {
 
 
     private UserService userService;
 
-    public UserController(UserService userService) {
+    public AuthenticationController(UserService userService) {
         this.userService = userService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Response> add(@RequestBody User user){
+    public ResponseEntity<Response>registerUser(@RequestBody User user){
         return ResponseEntity.ok(userService.addUser(user));
+    }
+    @PostMapping("/login")
+    public ResponseEntity<Response>loginUser(@RequestBody LoginRequest loginRequest){
+        return ResponseEntity.ok(userService.authenticateUser(loginRequest));
     }
 
 }

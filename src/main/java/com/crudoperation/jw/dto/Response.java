@@ -2,6 +2,7 @@ package com.crudoperation.jw.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.management.relation.Role;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -11,13 +12,14 @@ public class Response {
   private int statusCode;
   private String message;
   private String token;
+  private Role role;
 
   private List<UserAccountDto> userAccountDtoList;
   private List<AddressDto>addressDtoList;
   private UserAccountDto userAccountDto;
   private AddressDto addressDto;
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto,Role role) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -26,6 +28,7 @@ public class Response {
         this.addressDtoList = addressDtoList;
         this.userAccountDto = userAccountDto;
         this.addressDto = addressDto;
+        this.role=role;
     }
 
     public Response(){}
@@ -93,5 +96,13 @@ public class Response {
 
     public void setAddressDto(AddressDto addressDto) {
         this.addressDto = addressDto;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
