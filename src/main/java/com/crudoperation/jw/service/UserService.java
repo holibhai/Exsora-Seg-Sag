@@ -1,5 +1,6 @@
 package com.crudoperation.jw.service;
 
+import com.crudoperation.jw.dto.LoginRequest;
 import com.crudoperation.jw.dto.Response;
 import com.crudoperation.jw.dto.UserAccountDto;
 import com.crudoperation.jw.exception.OurException;
@@ -11,6 +12,8 @@ import com.crudoperation.jw.model.User;
 import com.crudoperation.jw.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,8 @@ public class UserService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private JwtService jwtService;
 
 
 
@@ -44,20 +49,46 @@ public class UserService {
             if(address != null) {
                 address.setUser(user);
             }
+
             User savedUser = userRepository.save(user);
             UserAccountDto userAccountDto= Utils.mapUserEntityToUserDTO(savedUser);
             response.setStatusCode(200);
             response.setMessage("User added successfully");
             response.setUserAccountDto(userAccountDto);
 
-
-
         }catch (OurException e){
             response.setStatusCode(400);
             response.setMessage(e.getMessage());
         }
         return response;
-
-
     }
+
+    public Response authenticateUser(LoginRequest loginRequest) {
+             Response response=new Response();
+             try {
+                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                 User user = (User) userRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new OurException("user Not found"));
+                 String token = jwtService.generateToken(user);
+                 response.setStatusCode(200);
+                 response.setMessage("User authenticated successfully");
+                 response.setToken(token);
+
+                 UserAccountDto userAccountDto= Utils.mapUserEntityToUserDTO(user);
+                 response.setUserAccountDto(userAccountDto);
+
+    } catch (OurException e) {
+        response.setStatusCode(404);
+        response.setMessage(e.getMessage());
+
+    } catch (Exception e) {
+
+        response.setStatusCode(500);
+        response.setMessage("Error Occurred During USer Login " + e.getMessage());
+    }
+        return response;
+}
+
+
+
+
 }
