@@ -34,6 +34,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtService jwtService;
+    @Autowired
+    private AddressRepository addressRepository;
 
 
 
@@ -147,5 +149,39 @@ public class UserService {
              response.setMessage(e.getMessage());
          }
          return response;
+    }
+
+    public Response updateUser(User user, int userId) {
+        Response response=new Response();
+        try{
+            User userEntity = userRepository.findById(userId).orElseThrow(() -> new OurException("user Not found"));
+            userEntity.setUsername(user.getUsername());
+            userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
+
+            userEntity.setRole(user.getRole());
+            userEntity.setFirstName(user.getFirstName());
+            userEntity.setLastName(user.getLastName());
+
+
+            Address address = addressRepository.findByUserId(userId).orElseThrow(() -> new OurException("address Not found"));
+            if(address!=null){
+                address.setCity(user.getAddress().getCity());
+                address.setState(user.getAddress().getState());
+                address.setZip(user.getAddress().getZip());
+                address.setStreet(user.getAddress().getStreet());
+                address.setUser(userEntity);
+            }
+            userRepository.save(userEntity);
+            UserAccountDto userAccountDto = Utils.mapUserEntityToUserDTO(userEntity);
+            response.setUserAccountDto(userAccountDto);
+            response.setStatusCode(200);
+            response.setMessage("User updated successfully");
+
+        }catch (OurException e){
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+        }
+    return response;
+
     }
 }

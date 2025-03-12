@@ -14,6 +14,7 @@ public class Utils {
            userAccountDto.setFirstName(user.getFirstName());
            userAccountDto.setLastName(user.getLastName());
            userAccountDto.setRole(user.getRole());
+
            return userAccountDto;
     }
 }

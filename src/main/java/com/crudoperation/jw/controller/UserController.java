@@ -1,6 +1,7 @@
 package com.crudoperation.jw.controller;
 
 import com.crudoperation.jw.dto.Response;
+import com.crudoperation.jw.model.User;
 import com.crudoperation.jw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,11 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Response>deleteUserById(@PathVariable int userId){
         return ResponseEntity.ok(userService.deleteUserAccount(userId));
+    }
+
+    @PutMapping("/updateUser/{userId}")
+    public ResponseEntity<Response>update(@RequestBody User user,@PathVariable int userId){
+        return ResponseEntity.ok(userService.updateUser(user,userId));
     }
 
 }
