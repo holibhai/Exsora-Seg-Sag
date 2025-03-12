@@ -1,8 +1,7 @@
 package com.crudoperation.jw.config;
 
 import com.crudoperation.jw.filter.JwtAuthenticationFilter;
-import com.crudoperation.jw.service.UserDetailsImp;
-import jakarta.servlet.Filter;
+import com.crudoperation.jw.service.serviceImp.UserDetailsImp;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

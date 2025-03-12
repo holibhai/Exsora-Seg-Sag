@@ -17,7 +17,7 @@ public class Address {
 
     @OneToOne
     @JoinColumn(name = "user_id",nullable = false)
-    @JsonIgnore
+
     private User user;
 
     public Address(int id, String street, String city, String state, String zip, User user) {

@@ -1,4 +1,4 @@
-package com.crudoperation.jw.service;
+package com.crudoperation.jw.service.serviceImp;
 
 import com.crudoperation.jw.dto.LoginRequest;
 import com.crudoperation.jw.dto.Response;
@@ -9,20 +9,19 @@ import com.crudoperation.jw.model.Role;
 import com.crudoperation.jw.repo.AddressRepository;
 import com.crudoperation.jw.repo.UserRepository;
 import com.crudoperation.jw.model.User;
+import com.crudoperation.jw.service.servicesInterface.UserServiceImp;
 import com.crudoperation.jw.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceImp {
 
 
 

@@ -1,4 +1,4 @@
-package com.crudoperation.jw.service;
+package com.crudoperation.jw.service.serviceImp;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.crudoperation.jw.service;
+package com.crudoperation.jw.service.serviceImp;
 
 import com.crudoperation.jw.repo.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,7 @@
 package com.crudoperation.jw.filter;
 
-import com.crudoperation.jw.service.JwtService;
-import com.crudoperation.jw.service.UserDetailsImp;
+import com.crudoperation.jw.service.serviceImp.JwtService;
+import com.crudoperation.jw.service.serviceImp.UserDetailsImp;
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

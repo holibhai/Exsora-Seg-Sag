@@ -2,7 +2,7 @@ package com.crudoperation.jw.controller;
 
 import com.crudoperation.jw.dto.LoginRequest;
 import com.crudoperation.jw.dto.Response;
-import com.crudoperation.jw.service.UserService;
+import com.crudoperation.jw.service.serviceImp.UserService;
 import com.crudoperation.jw.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
