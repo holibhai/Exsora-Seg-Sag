@@ -30,7 +30,21 @@ public class Utils {
         addressDto.setStreet(address.getStreet());
 
         return addressDto;
+    }
 
+    public static ProductDto mapProductEntityToProductDto(Product product){
+        ProductDto productDto=new ProductDto();
+        productDto.setProductId(product.getId());
+        productDto.setProductName(product.getProductName());
+        productDto.setProductDescription(product.getProductDescription());
+        productDto.setProductPrice(product.getProductPrice());
+        productDto.setProductQuantity(product.getProductQuantity());
+        productDto.setProductStatus(product.getProductStatus());
+        productDto.setImageData(product.getImageData());
+        productDto.setImageType(product.getImageType());
+        productDto.setImageName(product.getImaageName());
+
+        return productDto;
 
     }
 

@@ -18,8 +18,15 @@ public class Response {
   private List<AddressDto>addressDtoList;
   private UserAccountDto userAccountDto;
   private AddressDto addressDto;
+  private ProductDto productDto;
+  private List<ProductDto> productDtoList;
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto,Role role) {
+    public Response(ProductDto productDto, List<ProductDto> productDtoList) {
+        this.productDto = productDto;
+        this.productDtoList = productDtoList;
+    }
+
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, Role role) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -104,5 +111,21 @@ public class Response {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public ProductDto getProductDto() {
+        return productDto;
+    }
+
+    public void setProductDto(ProductDto productDto) {
+        this.productDto = productDto;
+    }
+
+    public List<ProductDto> getProductDtoList() {
+        return productDtoList;
+    }
+
+    public void setProductDtoList(List<ProductDto> productDtoList) {
+        this.productDtoList = productDtoList;
     }
 }
