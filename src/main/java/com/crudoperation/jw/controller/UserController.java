@@ -19,16 +19,16 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{userId}")
-    public ResponseEntity<Response>getUserById(@PathVariable int userId){
+    public ResponseEntity<Response>getUserById(@PathVariable("userId") int userId){
         return ResponseEntity.ok(userService.getUserById(userId));
     }
     @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<Response>deleteUserById(@PathVariable int userId){
+    public ResponseEntity<Response>deleteUserById(@PathVariable("UserId") int userId){
         return ResponseEntity.ok(userService.deleteUserAccount(userId));
     }
 
     @PutMapping("/updateUser/{userId}")
-    public ResponseEntity<Response>update(@RequestBody User user,@PathVariable int userId){
+    public ResponseEntity<Response>update(@RequestBody User user,@PathVariable("UserId") int userId){
         return ResponseEntity.ok(userService.updateUser(user,userId));
     }
 
