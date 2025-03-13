@@ -1,8 +1,10 @@
 package com.crudoperation.jw.utils;
 
 import com.crudoperation.jw.dto.AddressDto;
+import com.crudoperation.jw.dto.ProductDto;
 import com.crudoperation.jw.dto.UserAccountDto;
 import com.crudoperation.jw.model.Address;
+import com.crudoperation.jw.model.Product;
 import com.crudoperation.jw.model.Role;
 import com.crudoperation.jw.model.User;
 
@@ -31,4 +33,6 @@ public class Utils {
 
 
     }
+
+
 }
