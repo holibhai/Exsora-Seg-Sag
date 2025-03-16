@@ -26,13 +26,17 @@ public class ProductService {
         Response response = new Response();
         try{
             System.out.println("dcniece");
-            product.setImaageName(imagefile.getOriginalFilename());
+            product.setImageName(imagefile.getOriginalFilename());
             product.setImageType(imagefile.getContentType());
             product.setImageData(imagefile.getBytes());
             productRepository.save(product);
             response.setStatusCode(200);
             response.setMessage("Product added successfully");
 
+
+        } catch (OurException e) {
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -49,12 +53,7 @@ public class ProductService {
         Response response=new Response();
         try{
             List<Product> products=productRepository.findAll();
-            List<ProductDto>productDtos=new ArrayList<>();
-            for (Product product:products) {
-                ProductDto productDto=Utils.mapProductEntityToProductDto(product);
-                productDtos.add(productDto);
-
-            }
+            List<ProductDto> productDtos=Utils.mapProductListEntityToProductListDTO(products);
             response.setStatusCode(200);
             response.setMessage("Product list successfully");
             response.setProductDtoList(productDtos);
@@ -64,5 +63,42 @@ public class ProductService {
         }
         return response;
 
+    }
+
+    public Response updateProduct(Product product, MultipartFile imagefile, int productId) {
+        Response response = new Response();
+        try{
+            Optional<Product> productOptional = productRepository.findById(productId);
+            if(productOptional.isPresent()){
+                if(imagefile!=null || !imagefile.isEmpty()) {
+                    productOptional.get().setImageName(imagefile.getOriginalFilename());
+                    productOptional.get().setImageType(imagefile.getContentType());
+                    productOptional.get().setImageData(imagefile.getBytes());
+                }
+                productOptional.get().setProductQuantity(product.getProductQuantity());
+                productOptional.get().setProductPrice(product.getProductPrice());
+                productOptional.get().setProductName(product.getProductName());
+                productOptional.get().setProductType(product.getProductType());
+                productOptional.get().setProductType(product.getProductStatus());
+                productOptional.get().setProductType(product.getProductDescription());
+
+                productRepository.save(productOptional.get());
+
+                ProductDto productDto=Utils.mapProductEntityToProductDto(productOptional.get());
+                response.setStatusCode(200);
+                response.setMessage("Product updated successfully");
+                response.setProductDto(productDto);
+
+
+
+
+            }
+        } catch (OurException e) {
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return response;
     }
 }
