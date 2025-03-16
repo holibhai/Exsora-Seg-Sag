@@ -55,5 +55,9 @@ public class ProductController {
     public ResponseEntity<Response>getAllProducts() {
          return ResponseEntity.ok(productService.getAllProduct());
     }
+    @PutMapping("/update/{productId}")
+    public ResponseEntity<Response>updateProduct(@RequestPart Product product,@RequestPart(value = "file",required = false) MultipartFile imagefile,@PathVariable int productId) {
+        return ResponseEntity.ok(productService.updateProduct(product,imagefile,productId));
+    }
 
 }
