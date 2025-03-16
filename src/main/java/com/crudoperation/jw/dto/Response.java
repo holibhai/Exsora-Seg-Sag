@@ -20,22 +20,22 @@ public class Response {
   private AddressDto addressDto;
   private ProductDto productDto;
   private List<ProductDto> productDtoList;
+  private CatagorieDto catagorieDto;
 
-    public Response(ProductDto productDto, List<ProductDto> productDtoList) {
-        this.productDto = productDto;
-        this.productDtoList = productDtoList;
-    }
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, Role role) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
         this.token = token;
+        this.role = role;
         this.userAccountDtoList = userAccountDtoList;
         this.addressDtoList = addressDtoList;
         this.userAccountDto = userAccountDto;
         this.addressDto = addressDto;
-        this.role=role;
+        this.productDto = productDto;
+        this.productDtoList = productDtoList;
+        this.catagorieDto = catagorieDto;
     }
 
     public Response(){}
@@ -127,5 +127,13 @@ public class Response {
 
     public void setProductDtoList(List<ProductDto> productDtoList) {
         this.productDtoList = productDtoList;
+    }
+
+    public CatagorieDto getCatagorieDto() {
+        return catagorieDto;
+    }
+
+    public void setCatagorieDto(CatagorieDto catagorieDto) {
+        this.catagorieDto = catagorieDto;
     }
 }
