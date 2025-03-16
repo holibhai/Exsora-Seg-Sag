@@ -99,12 +99,12 @@ public class Product {
         isAvailable = available;
     }
 
-    public String getImaageName() {
+    public String getImageName() {
         return imageName;
     }
 
-    public void setImaageName(String imaageName) {
-        this.imageName = imaageName;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public String getImageType() {
