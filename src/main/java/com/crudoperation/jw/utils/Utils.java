@@ -1,12 +1,13 @@
 package com.crudoperation.jw.utils;
 
 import com.crudoperation.jw.dto.AddressDto;
+import com.crudoperation.jw.dto.CatagorieDto;
 import com.crudoperation.jw.dto.ProductDto;
 import com.crudoperation.jw.dto.UserAccountDto;
-import com.crudoperation.jw.model.Address;
-import com.crudoperation.jw.model.Product;
-import com.crudoperation.jw.model.Role;
-import com.crudoperation.jw.model.User;
+import com.crudoperation.jw.model.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
 
@@ -42,10 +43,22 @@ public class Utils {
         productDto.setProductStatus(product.getProductStatus());
         productDto.setImageData(product.getImageData());
         productDto.setImageType(product.getImageType());
-        productDto.setImageName(product.getImaageName());
-
+        productDto.setImageName(product.getImageName());
         return productDto;
 
+    }
+
+    public static CatagorieDto mapCatagorieEntityToCatagorieDto(Catagorie catagori){
+        CatagorieDto catagorieDto=new CatagorieDto();
+        catagorieDto.setId(catagori.getId());
+        catagorieDto.setCatagorieDescription(catagori.getCatagorieDescription());
+        catagorieDto.setCatagorieType(catagori.getCatagorieType());
+        return catagorieDto;
+
+    }
+
+    public static List<ProductDto> mapProductListEntityToProductListDTO(List<Product> productList) {
+        return productList.stream().map(Utils::mapProductEntityToProductDto).collect(Collectors.toList());
     }
 
 
