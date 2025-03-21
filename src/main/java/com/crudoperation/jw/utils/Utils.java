@@ -1,9 +1,6 @@
 package com.crudoperation.jw.utils;
 
-import com.crudoperation.jw.dto.AddressDto;
-import com.crudoperation.jw.dto.CatagorieDto;
-import com.crudoperation.jw.dto.ProductDto;
-import com.crudoperation.jw.dto.UserAccountDto;
+import com.crudoperation.jw.dto.*;
 import com.crudoperation.jw.model.*;
 
 import java.util.List;
@@ -48,17 +45,32 @@ public class Utils {
 
     }
 
-    public static CatagorieDto mapCatagorieEntityToCatagorieDto(Catagorie catagori){
+    public static CatagorieDto mapCatagorieEntityToCatagorieDto(Catagorie catagorie){
         CatagorieDto catagorieDto=new CatagorieDto();
-        catagorieDto.setId(catagori.getId());
-        catagorieDto.setCatagorieDescription(catagori.getCatagorieDescription());
-        catagorieDto.setCatagorieType(catagori.getCatagorieType());
+        catagorieDto.setId(catagorie.getId());
+        catagorieDto.setCatagorieDescription(catagorie.getCatagorieDescription());
+        catagorieDto.setCatagorieType(catagorie.getCatagorieType());
         return catagorieDto;
 
     }
 
+    public static ProductTypeDto mapProductTypeEntityToProductTypeDto(ProductType productType){
+        ProductTypeDto productTypeDto=new ProductTypeDto();
+        productTypeDto.setProductTypeName(productType.getProductTypeName());
+        productTypeDto.setDescription(productType.getDescription());
+        productTypeDto.setId(productType.getId());
+        productTypeDto.setCatagorie(productType.getCatagorie());
+        return productTypeDto;
+    }
+
     public static List<ProductDto> mapProductListEntityToProductListDTO(List<Product> productList) {
         return productList.stream().map(Utils::mapProductEntityToProductDto).collect(Collectors.toList());
+    }
+    public static List<CatagorieDto> mapCatagorieListEntityToCatagorieListDTO(List<Catagorie> catagorieList) {
+        return catagorieList.stream().map(Utils:: mapCatagorieEntityToCatagorieDto).collect(Collectors.toList());
+    }
+    public static List<ProductTypeDto>mapProductTypeListEntityToProductTypeListDTO(List<ProductType> productTypeList) {
+        return productTypeList.stream().map(Utils::mapProductTypeEntityToProductTypeDto).collect(Collectors.toList());
     }
 
 
