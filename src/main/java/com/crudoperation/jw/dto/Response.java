@@ -1,5 +1,6 @@
 package com.crudoperation.jw.dto;
 
+import com.crudoperation.jw.model.ProductType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.management.relation.Role;
@@ -21,9 +22,12 @@ public class Response {
   private ProductDto productDto;
   private List<ProductDto> productDtoList;
   private CatagorieDto catagorieDto;
+  private List<CatagorieDto> catagorieDtoList;
+  private ProductType productType;
+  private List<ProductTypeDto> productTypeDtoList;
 
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductType productType, List<ProductTypeDto> productTypeDtoList) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -36,6 +40,9 @@ public class Response {
         this.productDto = productDto;
         this.productDtoList = productDtoList;
         this.catagorieDto = catagorieDto;
+        this.catagorieDtoList = catagorieDtoList;
+        this.productType = productType;
+        this.productTypeDtoList = productTypeDtoList;
     }
 
     public Response(){}
@@ -125,7 +132,7 @@ public class Response {
         return productDtoList;
     }
 
-    public void setProductDtoList(List<ProductDto> productDtoList) {
+    public void setProductDtoList() {
         this.productDtoList = productDtoList;
     }
 
@@ -135,5 +142,33 @@ public class Response {
 
     public void setCatagorieDto(CatagorieDto catagorieDto) {
         this.catagorieDto = catagorieDto;
+    }
+
+    public List<CatagorieDto> getCatagorieDtoList() {
+        return catagorieDtoList;
+    }
+
+    public void setCatagorieDtoList(List<CatagorieDto> catagorieDtoList) {
+        this.catagorieDtoList = catagorieDtoList;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public void setProductDtoList(List<ProductDto> productDtoList) {
+        this.productDtoList = productDtoList;
+    }
+
+    public List<ProductTypeDto> getProductTypeDtoList() {
+        return productTypeDtoList;
+    }
+
+    public void setProductTypeDtoList(List<ProductTypeDto> productTypeDtoList) {
+        this.productTypeDtoList = productTypeDtoList;
     }
 }
