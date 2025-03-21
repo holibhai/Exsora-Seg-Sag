@@ -16,13 +16,13 @@ public class ProductType {
     private String productTypeName;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "catagorie_id",nullable = false)
-    @JsonIgnore
-    private Catagorie catagorie;
+//    @ManyToOne
+//    @JoinColumn(name = "catagorie_id",nullable = false)
+
+    private String catagorie;
 
 
-    public ProductType(int id, String productTypeName, String description, Catagorie catagorie) {
+    public ProductType(int id, String productTypeName, String description, String catagorie) {
         this.id = id;
         this.productTypeName = productTypeName;
         this.description = description;
@@ -58,11 +58,11 @@ public class ProductType {
         this.description = description;
     }
 
-    public Catagorie getCatagorie() {
+    public String getCatagorie() {
         return catagorie;
     }
 
-    public void setCatagorie(Catagorie catagorie) {
+    public void setCatagorie(String catagorie) {
         this.catagorie = catagorie;
     }
 

@@ -9,8 +9,12 @@ import com.crudoperation.jw.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CatagorieService {
+
 
     @Autowired
     private CatagorieRepository catagorieRepository;
@@ -26,6 +30,23 @@ public class CatagorieService {
         }catch(OurException e){
             response.setStatusCode(500);
             response.setMessage("Error");
+        }
+        return response;
+    }
+    public Response getCatagorie() {
+        Response response = new Response();
+//        List<Catagorie> catagorieList=new ArrayList<Catagorie>();
+        try{
+            List<Catagorie> catagories=catagorieRepository.findAll();
+            List<CatagorieDto> catagorieDtoList=Utils.mapCatagorieListEntityToCatagorieListDTO(catagories);
+            response.setCatagorieDtoList(catagorieDtoList);
+            response.setMessage("Success");
+            response.setStatusCode(200);
+
+        }catch(OurException e){
+            response.setStatusCode(500);
+            response.setMessage("Error");
+
         }
         return response;
     }

@@ -1,7 +1,9 @@
 package com.crudoperation.jw.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Lob;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDto {
 
        private int productId;

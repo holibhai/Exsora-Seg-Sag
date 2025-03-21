@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +55,7 @@ public class ProductService {
             List<ProductDto> productDtos=Utils.mapProductListEntityToProductListDTO(products);
             response.setStatusCode(200);
             response.setMessage("Product list successfully");
-            response.setProductDtoList(productDtos);
+            response.setProductDtoList();
         }catch (OurException e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());

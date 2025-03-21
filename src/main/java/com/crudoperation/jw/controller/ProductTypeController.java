@@ -1,9 +1,26 @@
 package com.crudoperation.jw.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.crudoperation.jw.dto.Response;
+import com.crudoperation.jw.model.ProductType;
+import com.crudoperation.jw.service.serviceImp.ProductTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/productType")
 public class ProductTypeController {
+
+    @Autowired
+    private ProductTypeService productTypeService;
+
+    @PostMapping("/add")
+    public ResponseEntity<Response> addProductType(@RequestBody ProductType productType) {
+        return ResponseEntity.ok(productTypeService.addProductType(productType));
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<Response> getProductType() {
+        return ResponseEntity.ok(productTypeService.getProductType());
+    }
 }
