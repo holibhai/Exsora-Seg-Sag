@@ -16,15 +16,15 @@ public class Catagorie {
     private String catagorieId;
     private String catagorieDescription;
 
-    @OneToMany(mappedBy = "catagorie", cascade = CascadeType.ALL)
-    private List<ProductType>productTypes;
+//    @OneToMany(mappedBy = "catagorie", cascade = CascadeType.ALL)
+//    private List<ProductType>productTypes;
 
-    public Catagorie(int id, String catagorieType, String catagorieId, String catagorieDescription, List<ProductType> productTypes) {
+    public Catagorie(int id, String catagorieType, String catagorieId, String catagorieDescription) {
         this.id = id;
         this.catagorieType = catagorieType;
         this.catagorieId = catagorieId;
         this.catagorieDescription = catagorieDescription;
-        this.productTypes = productTypes;
+//        this.productTypes = productTypes;
     }
 
     public Catagorie() {
@@ -63,11 +63,11 @@ public class Catagorie {
         this.catagorieDescription = catagorieDescription;
     }
 
-    public List<ProductType> getProductTypes() {
-        return productTypes;
-    }
-
-    public void setProductTypes(List<ProductType> productTypes) {
-        this.productTypes = productTypes;
-    }
+//    public List<ProductType> getProductTypes() {
+//        return productTypes;
+//    }
+//
+//    public void setProductTypes(List<ProductType> productTypes) {
+//        this.productTypes = productTypes;
+//    }
 }
