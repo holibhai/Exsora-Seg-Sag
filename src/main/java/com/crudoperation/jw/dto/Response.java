@@ -23,11 +23,11 @@ public class Response {
   private List<ProductDto> productDtoList;
   private CatagorieDto catagorieDto;
   private List<CatagorieDto> catagorieDtoList;
-  private ProductType productType;
+  private ProductTypeDto productTypeDto;
   private List<ProductTypeDto> productTypeDtoList;
 
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductType productType, List<ProductTypeDto> productTypeDtoList) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -41,7 +41,7 @@ public class Response {
         this.productDtoList = productDtoList;
         this.catagorieDto = catagorieDto;
         this.catagorieDtoList = catagorieDtoList;
-        this.productType = productType;
+        this.productTypeDto = productTypeDto;
         this.productTypeDtoList = productTypeDtoList;
     }
 
@@ -152,12 +152,12 @@ public class Response {
         this.catagorieDtoList = catagorieDtoList;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public ProductTypeDto getProductTypeDto() {
+        return productTypeDto;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductTypeDto(ProductTypeDto productTypeDto) {
+        this.productTypeDto = productTypeDto;
     }
 
     public void setProductDtoList(List<ProductDto> productDtoList) {
