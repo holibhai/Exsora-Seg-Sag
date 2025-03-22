@@ -23,4 +23,12 @@ public class ProductTypeController {
     public ResponseEntity<Response> getProductType() {
         return ResponseEntity.ok(productTypeService.getProductType());
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Response> deleteProductType(@PathVariable int id) {
+        return ResponseEntity.ok(productTypeService.deleteProductType(id));
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Response> updateProductType(@PathVariable int id, @RequestBody ProductType productType) {
+        return ResponseEntity.ok(productTypeService.updateProductType(id,productType));
+    }
 }

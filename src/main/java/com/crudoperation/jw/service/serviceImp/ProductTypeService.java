@@ -2,6 +2,7 @@ package com.crudoperation.jw.service.serviceImp;
 
 import com.crudoperation.jw.dto.ProductTypeDto;
 import com.crudoperation.jw.dto.Response;
+import com.crudoperation.jw.exception.OurException;
 import com.crudoperation.jw.model.ProductType;
 import com.crudoperation.jw.repo.ProductTypeRepository;
 import com.crudoperation.jw.utils.Utils;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductTypeService {
@@ -20,7 +22,8 @@ public class ProductTypeService {
         Response response = new Response();
         try{
             ProductType newProductType = productTypeRepository.save(productType);
-            response.setProductType(newProductType);
+            ProductTypeDto productTypeDto = Utils.mapProductTypeEntityToProductTypeDto(newProductType);
+            response.setProductTypeDto(productTypeDto);
             response.setMessage("Product type added successfully");
             response.setStatusCode(200);
 
@@ -45,5 +48,50 @@ public class ProductTypeService {
             response.setMessage(e.getMessage());
         }
         return response;
+    }
+
+    public Response deleteProductType(int id) {
+        Response response = new Response();
+        try{
+            Optional<ProductType> productTypeOptional = productTypeRepository.findById(id);
+            if(productTypeOptional.isPresent()){
+                ProductType productType = productTypeOptional.get();
+                productTypeRepository.delete(productType);
+            }
+            response.setStatusCode(200);
+            response.setMessage("Product type deleted successfully");
+
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+
+    public Response updateProductType(int id, ProductType productType) {
+        Response response = new Response();
+        try{
+            Optional<ProductType> productTypeOptional = productTypeRepository.findById(id);
+
+            if(productTypeOptional.isPresent()){
+                 productTypeOptional.get().setProductTypeName(productType.getProductTypeName());
+                 productTypeOptional.get().setDescription(productType.getDescription());
+                 productTypeOptional.get().setCatagorie(productType.getCatagorie());
+                 productTypeRepository.save(productTypeOptional.get());
+                 response.setStatusCode(200);
+                 response.setMessage("Product type updated successfully");
+                 ProductTypeDto productTypeDto = Utils.mapProductTypeEntityToProductTypeDto(productTypeOptional.get());
+                 response.setProductTypeDto(productTypeDto);
+
+            }else{
+                response.setStatusCode(404);
+                response.setMessage("Product type not found");
+            }
+        }catch (OurException e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+
     }
 }
