@@ -94,4 +94,21 @@ public class ProductTypeService {
         return response;
 
     }
+
+    public Response getProductTypeByProductTypeName(String catagorie) {
+        Response response = new Response();
+        try{
+                List<ProductType>productType=productTypeRepository.findByCatagorie(catagorie);
+                List<ProductTypeDto>productTypeDtoList=Utils.mapProductTypeListEntityToProductTypeListDTO(productType);
+                response.setProductTypeDtoList(productTypeDtoList);
+                response.setStatusCode(200);
+                response.setMessage("Product type found successfully");
+
+
+        }catch (OurException e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }

@@ -31,4 +31,8 @@ public class ProductTypeController {
     public ResponseEntity<Response> updateProductType(@PathVariable int id, @RequestBody ProductType productType) {
         return ResponseEntity.ok(productTypeService.updateProductType(id,productType));
     }
+    @GetMapping("/getByName/{productTypeName}")
+    public ResponseEntity<Response> getProductTypeByName(@PathVariable String productTypeName) {
+        return ResponseEntity.ok(productTypeService.getProductTypeByProductTypeName(productTypeName));
+    }
 }
