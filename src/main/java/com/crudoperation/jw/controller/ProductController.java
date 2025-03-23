@@ -24,6 +24,8 @@ public class ProductController {
     public ResponseEntity<Response> addProduct(@RequestPart Product product ,
                                                @RequestPart MultipartFile imagefile) {
         System.out.println("hello check");
+        System.out.println(product.getProductQuantity());
+        System.out.println(product.getProductName());
         try {
             Response response = productService.addProduct(product, imagefile);
             return ResponseEntity.ok(response);
@@ -55,6 +57,7 @@ public class ProductController {
     public ResponseEntity<Response>getAllProducts() {
          return ResponseEntity.ok(productService.getAllProduct());
     }
+
     @PutMapping("/update/{productId}")
     public ResponseEntity<Response>updateProduct(@RequestPart Product product,@RequestPart(value = "file",required = false) MultipartFile imagefile,@PathVariable int productId) {
         return ResponseEntity.ok(productService.updateProduct(product,imagefile,productId));
