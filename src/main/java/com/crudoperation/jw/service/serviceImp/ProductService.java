@@ -23,14 +23,22 @@ public class ProductService {
 
     public Response addProduct(Product product, MultipartFile imagefile) {
         Response response = new Response();
+        System.out.println(product.getProductQuantity());
+        System.out.println(product.getProductName());
         try{
             System.out.println("dcniece");
-            product.setImageName(imagefile.getOriginalFilename());
-            product.setImageType(imagefile.getContentType());
-            product.setImageData(imagefile.getBytes());
-            productRepository.save(product);
-            response.setStatusCode(200);
-            response.setMessage("Product added successfully");
+            if(imagefile != null && !imagefile.isEmpty()){
+                product.setImageName(imagefile.getOriginalFilename());
+                product.setImageType(imagefile.getContentType());
+                product.setImageData(imagefile.getBytes());
+                productRepository.save(product);
+                response.setStatusCode(200);
+                response.setMessage("Product added successfully");
+            }else{
+                response.setStatusCode(400);
+                response.setMessage("Image file is empty");
+            }
+
 
 
         } catch (OurException e) {
@@ -55,7 +63,7 @@ public class ProductService {
             List<ProductDto> productDtos=Utils.mapProductListEntityToProductListDTO(products);
             response.setStatusCode(200);
             response.setMessage("Product list successfully");
-            response.setProductDtoList();
+            response.setProductDtoList(productDtos);
         }catch (OurException e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
