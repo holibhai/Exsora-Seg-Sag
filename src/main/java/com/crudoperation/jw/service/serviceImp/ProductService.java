@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,12 +26,14 @@ public class ProductService {
         Response response = new Response();
         System.out.println(product.getProductQuantity());
         System.out.println(product.getProductName());
+        System.out.println(product.getProductDescription());
         try{
             System.out.println("dcniece");
             if(imagefile != null && !imagefile.isEmpty()){
                 product.setImageName(imagefile.getOriginalFilename());
                 product.setImageType(imagefile.getContentType());
                 product.setImageData(imagefile.getBytes());
+                product.setDate(new Date());
                 productRepository.save(product);
                 response.setStatusCode(200);
                 response.setMessage("Product added successfully");
@@ -82,19 +85,27 @@ public class ProductService {
                     productOptional.get().setImageType(imagefile.getContentType());
                     productOptional.get().setImageData(imagefile.getBytes());
                 }
-                productOptional.get().setProductQuantity(product.getProductQuantity());
-                productOptional.get().setProductPrice(product.getProductPrice());
-                productOptional.get().setProductName(product.getProductName());
-                productOptional.get().setProductType(product.getProductType());
-                productOptional.get().setProductType(product.getProductStatus());
-                productOptional.get().setProductType(product.getProductDescription());
+
+                  productOptional.get().setProductQuantity(product.getProductQuantity());
+                  productOptional.get().setProductName(product.getProductName());
+                  productOptional.get().setProductType(product.getProductType());
+                  productOptional.get().setProductQuantity(product.getProductQuantity());
+                  productOptional.get().setDate(product.getDate());
+                  productOptional.get().setDescription(product.getDescription());
+                  productOptional.get().setProductQuantity(product.getProductQuantity());
+                  productOptional.get().setDepth(product.getDepth());
+                  productOptional.get().setHeight(product.getHeight());
+                  productOptional.get().setWidth(product.getWidth());
+                  productOptional.get().setCategory(product.getCategory());
+                  productOptional.get().setWarrantyInf(product.getWarrantyInf());
 
                 productRepository.save(productOptional.get());
 
-                ProductDto productDto=Utils.mapProductEntityToProductDto(productOptional.get());
+//                ProductDto productDto=Utils.mapProductEntityToProductDto(productOptional.get());
                 response.setStatusCode(200);
                 response.setMessage("Product updated successfully");
-                response.setProductDto(productDto);
+
+//                response.setProductDto(productDto);
 
 
 
@@ -107,5 +118,27 @@ public class ProductService {
             throw new RuntimeException(e);
         }
         return response;
+    }
+
+    public Response checkQuantity(int id,int quantity) {
+          Response response = new Response();
+          try{
+              int count=productRepository.findProductQuantityById(id);
+              if(count>quantity){
+                  response.setStatusCode(200);
+                  response.setMessage("product available");
+              }else{
+                  response.setStatusCode(400);
+                  response.setMessage("product not available");
+                  ProductDto productDto=new ProductDto();
+                  productDto.setProductQuantity(count);
+                  response.setProductDto(productDto);
+              }
+          }catch (OurException e) {
+              response.setStatusCode(500);
+              response.setMessage(e.getMessage());
+
+          }
+          return response;
     }
 }
