@@ -3,90 +3,161 @@ package com.crudoperation.jw.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Lob;
 
+import java.util.Date;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDto {
 
-       private int productId;
-       private String productName;
-       private String productDescription;
-       private float productPrice;
-       private int productQuantity;
-       private String productCategory;
-       private String productStatus;
-       private String imageName;
-       private String imageType;
-       @Lob
-       private byte[] imageData;
+    private int id;
+    private String ProductName;
+    private String ProductDescription;
+    private float ProductPrice;
+    private float discount;
+    private int ProductQuantity;
+    private float width;
+    private float height;
+    private float depth;
+    private String warrantyInf;
+    private String Description;
+    private Date date;
+    private String productType;
+    private String category;
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
 
-    public ProductDto(int productId, String productName, String productDescription, float productPrice, int productQuantity, String productCategory, String productStatus, String imageName, String imageType, byte[] imageData) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-        this.productQuantity = productQuantity;
-        this.productCategory = productCategory;
-        this.productStatus = productStatus;
+    public ProductDto(int id, String productName, String productDescription, float productPrice, float discount, int productQuantity, float width, float height, float depth, String warrantyInf, String description, Date date, String productType, String category, String imageName, String imageType, byte[] imageData) {
+        this.id = id;
+        ProductName = productName;
+        ProductDescription = productDescription;
+        ProductPrice = productPrice;
+        this.discount = discount;
+        ProductQuantity = productQuantity;
+        this.width = width;
+        this.height = height;
+        this.depth = depth;
+        this.warrantyInf = warrantyInf;
+        Description = description;
+        this.date = date;
+        this.productType = productType;
+        this.category = category;
         this.imageName = imageName;
         this.imageType = imageType;
         this.imageData = imageData;
     }
-
     public ProductDto() {}
 
-    public int getProductId() {
-        return productId;
+    public int getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getProductName() {
-        return productName;
+        return ProductName;
     }
 
     public void setProductName(String productName) {
-        this.productName = productName;
+        ProductName = productName;
     }
 
     public String getProductDescription() {
-        return productDescription;
+        return ProductDescription;
     }
 
     public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+        ProductDescription = productDescription;
     }
 
-    public Float getProductPrice() {
-        return productPrice;
+    public float getProductPrice() {
+        return ProductPrice;
     }
 
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+    public void setProductPrice(float productPrice) {
+        ProductPrice = productPrice;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
     }
 
     public int getProductQuantity() {
-        return productQuantity;
+        return ProductQuantity;
     }
 
     public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
+        ProductQuantity = productQuantity;
     }
 
-    public String getProductCategory() {
-        return productCategory;
+    public float getWidth() {
+        return width;
     }
 
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void setWidth(float width) {
+        this.width = width;
     }
 
-    public String getProductStatus() {
-        return productStatus;
+    public float getHeight() {
+        return height;
     }
 
-    public void setProductStatus(String productStatus) {
-        this.productStatus = productStatus;
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public float getDepth() {
+        return depth;
+    }
+
+    public void setDepth(float depth) {
+        this.depth = depth;
+    }
+
+    public String getWarrantyInf() {
+        return warrantyInf;
+    }
+
+    public void setWarrantyInf(String warrantyInf) {
+        this.warrantyInf = warrantyInf;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getImageName() {
@@ -103,10 +174,6 @@ public class ProductDto {
 
     public void setImageType(String imageType) {
         this.imageType = imageType;
-    }
-
-    public void setProductPrice(float productPrice) {
-        this.productPrice = productPrice;
     }
 
     public byte[] getImageData() {
