@@ -30,20 +30,30 @@ public class Utils {
         return addressDto;
     }
 
-    public static ProductDto mapProductEntityToProductDto(Product product){
-        ProductDto productDto=new ProductDto();
-        productDto.setProductId(product.getId());
+    public static ProductDto mapProductEntityToProductDto(Product product) {
+        ProductDto productDto = new ProductDto();
+
+        productDto.setId(product.getId());
         productDto.setProductName(product.getProductName());
         productDto.setProductDescription(product.getProductDescription());
         productDto.setProductPrice(product.getProductPrice());
+        productDto.setDiscount(product.getDiscount());
         productDto.setProductQuantity(product.getProductQuantity());
-        productDto.setProductStatus(product.getProductStatus());
-        productDto.setImageData(product.getImageData());
-        productDto.setImageType(product.getImageType());
+        productDto.setWidth(product.getWidth());
+        productDto.setHeight(product.getHeight());
+        productDto.setDepth(product.getDepth());
+        productDto.setWarrantyInf(product.getWarrantyInf());
+        productDto.setDescription(product.getDescription());
+        productDto.setDate(product.getDate());
+        productDto.setProductType(product.getProductType());
+        productDto.setCategory(product.getCategory());
         productDto.setImageName(product.getImageName());
-        return productDto;
+        productDto.setImageType(product.getImageType());
+        productDto.setImageData(product.getImageData());
 
+        return productDto;
     }
+
 
     public static CatagorieDto mapCatagorieEntityToCatagorieDto(Catagorie catagorie){
         CatagorieDto catagorieDto=new CatagorieDto();
