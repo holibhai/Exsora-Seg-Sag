@@ -28,9 +28,10 @@ public class User implements UserDetails {
 
     private Address address;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<CartItem>cartItems;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    private Cart cart;
+
 
     public User(int id, String firstName, String lastName, String username, String password, Role role, Address address) {
         this.id = id;
