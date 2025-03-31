@@ -28,6 +28,10 @@ public class User implements UserDetails {
 
     private Address address;
 
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Cart cart;
+
     public User(int id, String firstName, String lastName, String username, String password, Role role, Address address) {
         this.id = id;
         this.firstName = firstName;
