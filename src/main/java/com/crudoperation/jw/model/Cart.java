@@ -16,7 +16,41 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems;
 
-    private float totalPrice;
+    @OneToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
+    public Cart(int id, List<CartItem> cartItems, User user) {
+        this.id = id;
+        this.cartItems = cartItems;
+        this.user = user;
+    }
 
+    public Cart() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
