@@ -72,6 +72,13 @@ public class Utils {
         productTypeDto.setCatagorie(productType.getCatagorie());
         return productTypeDto;
     }
+    public static CartItemDto mapCartItemEntityToCartItemDto(CartItem cartItem){
+        CartItemDto cartItemDto=new CartItemDto();
+        cartItemDto.setId(cartItem.getId());
+        cartItemDto.setQuantity(cartItem.getQuantity());
+        cartItemDto.setProductId(cartItem.getProductId());
+        return cartItemDto;
+    }
 
     public static List<ProductDto> mapProductListEntityToProductListDTO(List<Product> productList) {
         return productList.stream().map(Utils::mapProductEntityToProductDto).collect(Collectors.toList());
@@ -81,6 +88,9 @@ public class Utils {
     }
     public static List<ProductTypeDto>mapProductTypeListEntityToProductTypeListDTO(List<ProductType> productTypeList) {
         return productTypeList.stream().map(Utils::mapProductTypeEntityToProductTypeDto).collect(Collectors.toList());
+    }
+    public static List<CartItemDto>mapCartItemListEntityToCartItemListDTO(List<CartItem> cartItemList) {
+        return cartItemList.stream().map(Utils::mapCartItemEntityToCartItemDto).collect(Collectors.toList());
     }
 
 
