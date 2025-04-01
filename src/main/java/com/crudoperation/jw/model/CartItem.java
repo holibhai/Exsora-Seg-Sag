@@ -11,20 +11,18 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quantity;
-    private float price;
     private int productId;
-    private float subtotal;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Cart cart;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    public CartItem(int id, int quantity, float price, int productId, float subtotal, Cart cart) {
+
+    public CartItem(int id, int quantity, int productId, User user) {
         this.id = id;
         this.quantity = quantity;
-        this.price = price;
         this.productId = productId;
-        this.subtotal = subtotal;
-        this.cart = cart;
+        this.user = user;
     }
 
     public CartItem() {
@@ -47,13 +45,6 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
 
     public int getProductId() {
         return productId;
@@ -63,19 +54,11 @@ public class CartItem {
         this.productId = productId;
     }
 
-    public float getSubtotal() {
-        return subtotal;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
