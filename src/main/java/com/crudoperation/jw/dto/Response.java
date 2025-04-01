@@ -25,9 +25,11 @@ public class Response {
   private List<CatagorieDto> catagorieDtoList;
   private ProductTypeDto productTypeDto;
   private List<ProductTypeDto> productTypeDtoList;
+  private CartItemDto cartItemDto;
+  private List<CartItemDto> cartItemDtoList;
 
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -43,6 +45,8 @@ public class Response {
         this.catagorieDtoList = catagorieDtoList;
         this.productTypeDto = productTypeDto;
         this.productTypeDtoList = productTypeDtoList;
+        this.cartItemDto = cartItemDto;
+        this.cartItemDtoList = cartItemDtoList;
     }
 
     public Response(){}
@@ -170,5 +174,21 @@ public class Response {
 
     public void setProductTypeDtoList(List<ProductTypeDto> productTypeDtoList) {
         this.productTypeDtoList = productTypeDtoList;
+    }
+
+    public CartItemDto getCartItemDto() {
+        return cartItemDto;
+    }
+
+    public void setCartItemDto(CartItemDto cartItemDto) {
+        this.cartItemDto = cartItemDto;
+    }
+
+    public List<CartItemDto> getCartItemDtoList() {
+        return cartItemDtoList;
+    }
+
+    public void setCartItemDtoList(List<CartItemDto> cartItemDtoList) {
+        this.cartItemDtoList = cartItemDtoList;
     }
 }
