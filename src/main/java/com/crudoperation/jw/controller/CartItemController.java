@@ -23,6 +23,15 @@ public class CartItemController {
     public ResponseEntity<Response> getItem(@PathVariable int userId) {
         return ResponseEntity.ok(cartItemService.getItems(userId));
     }
+    @PostMapping("/incQuantity")
+    public ResponseEntity<Response>incQuantity(@RequestParam int productId,@RequestParam int userId) {
+         return ResponseEntity.ok(cartItemService.incQuantity(productId,userId));
+    }
+
+    @PostMapping("/decQuantity")
+    public ResponseEntity<Response>decQuantity(@RequestParam int productId,@RequestParam int userId) {
+        return ResponseEntity.ok(cartItemService.decQuantity(productId,userId));
+    }
 
 
 }
