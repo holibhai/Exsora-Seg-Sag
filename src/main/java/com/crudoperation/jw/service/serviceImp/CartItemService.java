@@ -69,4 +69,41 @@ public class CartItemService {
         }
         return response;
     }
+
+    public Response incQuantity(int productId, int userId) {
+        Response response = new Response();
+        try{
+            List<CartItem> cartItem = cartItemRepository.findByUserId(userId);
+            for (CartItem cartItem1 : cartItem) {
+                if (cartItem1.getProductId() == productId) {
+                    cartItem1.setQuantity(cartItem1.getQuantity()+1);
+                    cartItemRepository.save(cartItem1);
+                }
+            }
+            response.setStatusCode(200);
+            response.setMessage("Successfully updated cart item");
+        }catch(Exception e){
+             response.setStatusCode(500);
+             response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+    public Response decQuantity(int productId, int userId) {
+        Response response = new Response();
+        try{
+            List<CartItem> cartItem = cartItemRepository.findByUserId(userId);
+            for (CartItem cartItem1 : cartItem) {
+                if (cartItem1.getProductId() == productId) {
+                    cartItem1.setQuantity(cartItem1.getQuantity()-1);
+                    cartItemRepository.save(cartItem1);
+                }
+            }
+            response.setStatusCode(200);
+            response.setMessage("Successfully updated cart item");
+        }catch(Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
