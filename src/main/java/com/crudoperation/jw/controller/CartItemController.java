@@ -33,5 +33,10 @@ public class CartItemController {
         return ResponseEntity.ok(cartItemService.decQuantity(productId,userId));
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<Response>deleteItem(@RequestParam int productId,@RequestParam int userId) {
+         return ResponseEntity.ok(cartItemService.deleteProduct(productId,userId));
+    }
+
 
 }
