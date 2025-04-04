@@ -31,6 +31,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<CartItem>cartItems;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Billing> billings;
+
 
 
     public User(int id, String firstName, String lastName, String username, String password, Role role, Address address) {
