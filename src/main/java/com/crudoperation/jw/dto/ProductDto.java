@@ -14,9 +14,9 @@ public class ProductDto {
     private float ProductPrice;
     private float discount;
     private int ProductQuantity;
-    private float width;
-    private float height;
-    private float depth;
+    private String width;
+    private String height;
+    private String depth;
     private String warrantyInf;
     private String Description;
     private Date date;
@@ -27,7 +27,7 @@ public class ProductDto {
     @Lob
     private byte[] imageData;
 
-    public ProductDto(int id, String productName, String productDescription, float productPrice, float discount, int productQuantity, float width, float height, float depth, String warrantyInf, String description, Date date, String productType, String category, String imageName, String imageType, byte[] imageData) {
+    public ProductDto(int id, String productName, String productDescription, float productPrice, float discount, int productQuantity, String width, String height, String depth, String warrantyInf, String description, Date date, String productType, String category, String imageName, String imageType, byte[] imageData) {
         this.id = id;
         ProductName = productName;
         ProductDescription = productDescription;
@@ -96,27 +96,27 @@ public class ProductDto {
         ProductQuantity = productQuantity;
     }
 
-    public float getWidth() {
+    public String getWidth() {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(String width) {
         this.width = width;
     }
 
-    public float getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public float getDepth() {
+    public String getDepth() {
         return depth;
     }
 
-    public void setDepth(float depth) {
+    public void setDepth(String depth) {
         this.depth = depth;
     }
 
