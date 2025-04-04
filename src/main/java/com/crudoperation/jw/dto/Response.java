@@ -27,9 +27,10 @@ public class Response {
   private List<ProductTypeDto> productTypeDtoList;
   private CartItemDto cartItemDto;
   private List<CartItemDto> cartItemDtoList;
+  private BillingDto billingDto;
 
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList,BillingDto billingDto) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -47,6 +48,7 @@ public class Response {
         this.productTypeDtoList = productTypeDtoList;
         this.cartItemDto = cartItemDto;
         this.cartItemDtoList = cartItemDtoList;
+        this.billingDto = billingDto;
     }
 
     public Response(){}
@@ -190,5 +192,13 @@ public class Response {
 
     public void setCartItemDtoList(List<CartItemDto> cartItemDtoList) {
         this.cartItemDtoList = cartItemDtoList;
+    }
+
+    public BillingDto getBillingDto() {
+        return billingDto;
+    }
+
+    public void setBillingDto(BillingDto billingDto) {
+        this.billingDto = billingDto;
     }
 }
