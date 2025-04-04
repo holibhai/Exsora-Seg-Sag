@@ -106,4 +106,24 @@ public class CartItemService {
         }
         return response;
     }
+
+    public Response deleteProduct(int productId, int userId) {
+        Response response=new Response();
+
+        try{
+            List<CartItem>cartItems=cartItemRepository.findByUserId(userId);
+            for (CartItem cartItem1 : cartItems) {
+                if (cartItem1.getProductId() == productId) {
+                      cartItemRepository.delete(cartItem1);
+                      response.setStatusCode(200);
+                      response.setMessage("Successfully deleted cart item");
+                }
+            }
+
+        }catch(Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
