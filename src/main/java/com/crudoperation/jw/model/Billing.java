@@ -21,13 +21,18 @@ public class Billing {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Billing(int id, String firstName, String lastName, String email, String mobileNumber, User user) {
+    @OneToOne
+    @JoinColumn(name = "delivery_id",nullable = false)
+    private Delivery delivery;
+
+    public Billing(int id, String firstName, String lastName, String email, String mobileNumber, User user, Delivery delivery) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.user = user;
+        this.delivery = delivery;
     }
 
     public Billing() {
@@ -80,5 +85,13 @@ public class Billing {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 }
