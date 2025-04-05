@@ -24,6 +24,7 @@ public class BillingService {
             if(delivery !=null){
                 Delivery delivery1=deliveryRepository.save(delivery);
                 billing.setDelivery(delivery1);
+
             }
             billingRepository.save(billing);
             response.setMessage("Successfully addeed billing");
