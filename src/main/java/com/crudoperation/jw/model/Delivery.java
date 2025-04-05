@@ -44,7 +44,7 @@ public class Delivery {
         this.deliveryDate = deliveryDate;
         this.pickUpOrderNotes = pickUpOrderNotes;
         this.receiverFirstName = receiverFirstName;
-        this.receiverLastName = receiverLastName;
+        this.receiverFirstName = receiverLastName;
         this.city = city;
         this.receiverMobileNumber = receiverMobileNumber;
         this.streetAddress1 = streetAddress1;
