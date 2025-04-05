@@ -44,7 +44,7 @@ public class Delivery {
         this.deliveryDate = deliveryDate;
         this.pickUpOrderNotes = pickUpOrderNotes;
         this.receiverFirstName = receiverFirstName;
-        this.receiverFirstName = receiverLastName;
+        this.receiverLastName = receiverLastName;
         this.city = city;
         this.receiverMobileNumber = receiverMobileNumber;
         this.streetAddress1 = streetAddress1;
@@ -52,6 +52,7 @@ public class Delivery {
         this.deliveryOrderNotes = deliveryOrderNotes;
         this.billing = billing;
     }
+
 
     public int getId() {
         return id;
@@ -90,7 +91,7 @@ public class Delivery {
     }
 
     public void setPickUpOrderNotes(String pickUpOrderNotes) {
-        pickUpOrderNotes = pickUpOrderNotes;
+        this.pickUpOrderNotes = pickUpOrderNotes;
     }
 
     public String getReceiverFirstName() {
@@ -114,7 +115,7 @@ public class Delivery {
     }
 
     public void setCity(String city) {
-        city = city;
+        this.city = city;
     }
 
     public String getReceiverMobileNumber() {

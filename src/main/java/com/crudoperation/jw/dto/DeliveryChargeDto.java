@@ -14,6 +14,7 @@ public class DeliveryChargeDto {
         this.city = city;
         this.price = price;
     }
+    public DeliveryChargeDto() {}
 
     public int getId() {
         return id;
