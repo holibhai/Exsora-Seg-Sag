@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DeliveryChargeService {
@@ -37,6 +38,23 @@ public class DeliveryChargeService {
             response.setDeliveryChargeDtoList(deliveryChargeDtos);
             response.setStatusCode(200);
             response.setMessage("Success");
+        }catch(Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+
+    public Response getPriceOfCity(String city) {
+        Response response = new Response();
+        try{
+            Optional<DeliveryCharge>deliveryCharge=deliveryChargeRepository.findByCity(city);
+            if(deliveryCharge.isPresent()){
+                response.setStatusCode(200);
+                response.setMessage("Success");
+                DeliveryChargeDto deliveryChargeDto=Utils.mapDeliveryChargeEntityToDeliveryChargeDto(deliveryCharge.get());
+                response.setDeliveryChargeDto(deliveryChargeDto);
+            }
         }catch(Exception e){
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
