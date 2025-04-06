@@ -22,4 +22,8 @@ public class DeliveryChargeController {
     public ResponseEntity<Response> getAllDeliveryCharge() {
          return ResponseEntity.ok(deliveryChargeService.getAllDeliveryDetails());
     }
+    @GetMapping("/getPrice/{city}")
+    public ResponseEntity<Response> getAllDeliveryChargePrice(@PathVariable String city) {
+        return ResponseEntity.ok(deliveryChargeService.getPriceOfCity(city));
+    }
 }
