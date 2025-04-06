@@ -79,6 +79,13 @@ public class Utils {
         cartItemDto.setProductId(cartItem.getProductId());
         return cartItemDto;
     }
+    public static DeliveryChargeDto mapDeliveryChargeEntityToDeliveryChargeDto(DeliveryCharge deliveryCharge){
+        DeliveryChargeDto deliveryChargeDto=new DeliveryChargeDto();
+        deliveryChargeDto.setId(deliveryCharge.getId());
+        deliveryChargeDto.setCity(deliveryCharge.getCity());
+        deliveryChargeDto.setPrice(deliveryCharge.getPrice());
+        return deliveryChargeDto;
+    }
 
     public static List<ProductDto> mapProductListEntityToProductListDTO(List<Product> productList) {
         return productList.stream().map(Utils::mapProductEntityToProductDto).collect(Collectors.toList());
@@ -91,6 +98,9 @@ public class Utils {
     }
     public static List<CartItemDto>mapCartItemListEntityToCartItemListDTO(List<CartItem> cartItemList) {
         return cartItemList.stream().map(Utils::mapCartItemEntityToCartItemDto).collect(Collectors.toList());
+    }
+    public static List<DeliveryChargeDto>mapDeliveryChargeListEntityToDeliveryChargeListDTO(List<DeliveryCharge> deliveryChargeList) {
+        return deliveryChargeList.stream().map(Utils::mapDeliveryChargeEntityToDeliveryChargeDto).collect(Collectors.toList());
     }
 
 
