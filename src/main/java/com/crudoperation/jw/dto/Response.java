@@ -28,9 +28,12 @@ public class Response {
   private CartItemDto cartItemDto;
   private List<CartItemDto> cartItemDtoList;
   private BillingDto billingDto;
+  private DeliveryDto deliveryDto;
+  private DeliveryChargeDto deliveryChargeDto;
+  private List<DeliveryChargeDto> deliveryChargeDtoList;
 
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList,BillingDto billingDto) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList, BillingDto billingDto, DeliveryDto deliveryDto, DeliveryChargeDto deliveryChargeDto, List<DeliveryChargeDto> deliveryChargeDtoList) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -49,6 +52,9 @@ public class Response {
         this.cartItemDto = cartItemDto;
         this.cartItemDtoList = cartItemDtoList;
         this.billingDto = billingDto;
+        this.deliveryDto = deliveryDto;
+        this.deliveryChargeDto = deliveryChargeDto;
+        this.deliveryChargeDtoList = deliveryChargeDtoList;
     }
 
     public Response(){}
@@ -200,5 +206,29 @@ public class Response {
 
     public void setBillingDto(BillingDto billingDto) {
         this.billingDto = billingDto;
+    }
+
+    public DeliveryDto getDeliveryDto() {
+        return deliveryDto;
+    }
+
+    public void setDeliveryDto(DeliveryDto deliveryDto) {
+        this.deliveryDto = deliveryDto;
+    }
+
+    public DeliveryChargeDto getDeliveryChargeDto() {
+        return deliveryChargeDto;
+    }
+
+    public void setDeliveryChargeDto(DeliveryChargeDto deliveryChargeDto) {
+        this.deliveryChargeDto = deliveryChargeDto;
+    }
+
+    public List<DeliveryChargeDto> getDeliveryChargeDtoList() {
+        return deliveryChargeDtoList;
+    }
+
+    public void setDeliveryChargeDtoList(List<DeliveryChargeDto> deliveryChargeDtoList) {
+        this.deliveryChargeDtoList = deliveryChargeDtoList;
     }
 }
