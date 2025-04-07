@@ -25,6 +25,9 @@ public class Billing {
     @JoinColumn(name = "delivery_id",nullable = false)
     private Delivery delivery;
 
+    @OneToOne(mappedBy = "billing")
+    private Order order;
+
     public Billing(int id, String firstName, String lastName, String email, String mobileNumber, User user, Delivery delivery) {
         this.id = id;
         this.firstName = firstName;
