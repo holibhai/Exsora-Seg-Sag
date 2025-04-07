@@ -21,6 +21,7 @@ public class BillingDto {
         this.mobileNumber = mobileNumber;
         this.user = user;
     }
+    public BillingDto() {}
 
     public int getId() {
         return id;
