@@ -35,4 +35,5 @@ public class ProductTypeController {
     public ResponseEntity<Response> getProductTypeByName(@PathVariable String productTypeName) {
         return ResponseEntity.ok(productTypeService.getProductTypeByProductTypeName(productTypeName));
     }
+
 }
