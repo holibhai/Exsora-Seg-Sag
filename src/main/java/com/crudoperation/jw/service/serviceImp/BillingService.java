@@ -1,10 +1,12 @@
 package com.crudoperation.jw.service.serviceImp;
 
+import com.crudoperation.jw.dto.BillingDto;
 import com.crudoperation.jw.dto.Response;
 import com.crudoperation.jw.model.Billing;
 import com.crudoperation.jw.model.Delivery;
 import com.crudoperation.jw.repo.BillingRepository;
 import com.crudoperation.jw.repo.DeliveryRepository;
+import com.crudoperation.jw.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,10 @@ public class BillingService {
                 billing.setDelivery(delivery1);
 
             }
-            billingRepository.save(billing);
-            response.setMessage("Successfully addeed billing");
+            Billing billing1=billingRepository.save(billing);
+            BillingDto billingDto= Utils.mapBillingEntityToBillingDto(billing1);
+            response.setBillingDto(billingDto);
+            response.setMessage("Successfully added billing");
             response.setStatusCode(201);
         }catch (Exception e){
            response.setStatusCode(500);
