@@ -3,6 +3,7 @@ package com.crudoperation.jw.service.serviceImp;
 import com.crudoperation.jw.dto.ProductDto;
 import com.crudoperation.jw.dto.Response;
 import com.crudoperation.jw.exception.OurException;
+import com.crudoperation.jw.model.Catagorie;
 import com.crudoperation.jw.model.Product;
 import com.crudoperation.jw.repo.ProductRepository;
 import com.crudoperation.jw.utils.Utils;
@@ -140,5 +141,28 @@ public class ProductService {
 
           }
           return response;
+    }
+    public Product getProductWithMinimumPrice() {
+        return productRepository.findTopByOrderByProductPriceAsc();
+    }
+
+    public Product getProductWithMaximumPrice() {
+        return productRepository.findTopByOrderByProductPriceDesc();
+    }
+
+    public Response getProductsByCatagorie(String catagorie) {
+        Response response=new Response();
+        try{
+            List<Product>products=productRepository.findProductByCategory(catagorie);
+            List<ProductDto>productDtos=Utils.mapProductListEntityToProductListDTO(products);
+            response.setStatusCode(200);
+            response.setMessage("Product list successfully");
+            response.setProductDtoList(productDtos);
+
+        }catch(OurException e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
     }
 }
