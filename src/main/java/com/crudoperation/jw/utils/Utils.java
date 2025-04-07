@@ -86,7 +86,24 @@ public class Utils {
         deliveryChargeDto.setPrice(deliveryCharge.getPrice());
         return deliveryChargeDto;
     }
-
+    public static OrderDto mapOrderEntityToOrderDto(Order order){
+         OrderDto orderDto=new OrderDto();
+         orderDto.setId(order.getId());
+         orderDto.setBilling(order.getBilling());
+         orderDto.setOrderItems(order.getOrderItems());
+         orderDto.setNetTotal(order.getNetTotal());
+         orderDto.setOffer(order.getOffer());
+//         orderDto.setUser(order.getUser());
+         return orderDto;
+    }
+    public static BillingDto mapBillingEntityToBillingDto(Billing billing){
+        BillingDto billingDto=new BillingDto();
+        billingDto.setId(billing.getId());
+        billingDto.setEmail(billing.getEmail());
+        billingDto.setFirstName(billing.getFirstName());
+        billingDto.setLastName(billing.getLastName());
+        return billingDto;
+    }
     public static List<ProductDto> mapProductListEntityToProductListDTO(List<Product> productList) {
         return productList.stream().map(Utils::mapProductEntityToProductDto).collect(Collectors.toList());
     }

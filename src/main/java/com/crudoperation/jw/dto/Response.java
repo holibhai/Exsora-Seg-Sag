@@ -31,9 +31,11 @@ public class Response {
   private DeliveryDto deliveryDto;
   private DeliveryChargeDto deliveryChargeDto;
   private List<DeliveryChargeDto> deliveryChargeDtoList;
+  private OrderDto orderDto;
+  private List<OrderDto> orderDtoList;
 
 
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList, BillingDto billingDto, DeliveryDto deliveryDto, DeliveryChargeDto deliveryChargeDto, List<DeliveryChargeDto> deliveryChargeDtoList) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList, BillingDto billingDto, DeliveryDto deliveryDto, DeliveryChargeDto deliveryChargeDto, List<DeliveryChargeDto> deliveryChargeDtoList, OrderDto orderDto, List<OrderDto> orderDtoList) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -55,6 +57,8 @@ public class Response {
         this.deliveryDto = deliveryDto;
         this.deliveryChargeDto = deliveryChargeDto;
         this.deliveryChargeDtoList = deliveryChargeDtoList;
+        this.orderDto = orderDto;
+        this.orderDtoList = orderDtoList;
     }
 
     public Response(){}
@@ -230,5 +234,21 @@ public class Response {
 
     public void setDeliveryChargeDtoList(List<DeliveryChargeDto> deliveryChargeDtoList) {
         this.deliveryChargeDtoList = deliveryChargeDtoList;
+    }
+
+    public OrderDto getOrderDto() {
+        return orderDto;
+    }
+
+    public void setOrderDto(OrderDto orderDto) {
+        this.orderDto = orderDto;
+    }
+
+    public List<OrderDto> getOrderDtoList() {
+        return orderDtoList;
+    }
+
+    public void setOrderDtoList(List<OrderDto> orderDtoList) {
+        this.orderDtoList = orderDtoList;
     }
 }
