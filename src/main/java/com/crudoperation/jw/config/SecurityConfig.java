@@ -41,10 +41,10 @@ public class SecurityConfig {
 
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/h2-console/**","/login/**","/api/**", "/refresh_token/**","/api/order/**")
+                        req->req.requestMatchers("/h2-console/**","/login/**","/api/**", "/refresh_token/**","/api/product/**")
                                 .permitAll()
                                 .requestMatchers("/admin_only/**").hasAuthority("ADMIN")
-//                                .requestMatchers("/api/**").hasAuthority("USER")
+                                .requestMatchers("/api/**").hasAuthority("USER")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userDetailsImp)
