@@ -12,11 +12,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String ProductName;
-    private String ProductDescription;
-    private float ProductPrice;
+    private String productName;
+    private String productDescription;
+    private float productPrice;
     private float discount;
-    private int ProductQuantity;
+    private int productQuantity;
     private String width;
     private String height;
     private String depth;
@@ -33,11 +33,11 @@ public class Product {
 
     public Product(int id, String productName, String productDescription, float productPrice, float discount, int productQuantity, String width, String height, String depth, String warrantyInf, String description, Date date, String productType, String category, String imageName, String imageType, byte[] imageData) {
         this.id = id;
-        ProductName = productName;
-        ProductDescription = productDescription;
-        ProductPrice = productPrice;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
         this.discount = discount;
-        ProductQuantity = productQuantity;
+        this.productQuantity = productQuantity;
         this.width = width;
         this.height = height;
         this.depth = depth;
@@ -64,27 +64,27 @@ public class Product {
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     public void setProductName(String productName) {
-        ProductName = productName;
+        this.productName = productName;
     }
 
     public String getProductDescription() {
-        return ProductDescription;
+        return productDescription;
     }
 
     public void setProductDescription(String productDescription) {
-        ProductDescription = productDescription;
+        this.productDescription = productDescription;
     }
 
     public float getProductPrice() {
-        return ProductPrice;
+        return productPrice;
     }
 
     public void setProductPrice(float productPrice) {
-        ProductPrice = productPrice;
+        this.productPrice = productPrice;
     }
 
     public float getDiscount() {
@@ -96,11 +96,11 @@ public class Product {
     }
 
     public int getProductQuantity() {
-        return ProductQuantity;
+        return productQuantity;
     }
 
     public void setProductQuantity(int productQuantity) {
-        ProductQuantity = productQuantity;
+        this.productQuantity = productQuantity;
     }
 
     public String getWidth() {

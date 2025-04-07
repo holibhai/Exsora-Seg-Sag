@@ -1,6 +1,7 @@
 package com.crudoperation.jw.controller;
 
 import com.crudoperation.jw.dto.Response;
+import com.crudoperation.jw.model.Catagorie;
 import com.crudoperation.jw.model.Product;
 import com.crudoperation.jw.service.serviceImp.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,24 @@ public class ProductController {
     @GetMapping("/checkQuantity/{id}/{quantity}")
     public ResponseEntity<Response>checkQuantity(@PathVariable int id, @PathVariable int quantity) {
         return ResponseEntity.ok(productService.checkQuantity(id,quantity));
+    }
+    @GetMapping("/minProduct")
+    public ResponseEntity<Product> getMinProduct() {
+        System.out.println("min product");
+        Product product = productService.getProductWithMinimumPrice();
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/maxProduct")
+    public ResponseEntity<Product> getMaxProduct() {
+        System.out.println("min product");
+        Product product = productService.getProductWithMaximumPrice();
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/findProductsByCat/{category}")
+    public ResponseEntity<Response>getProductsByCategory(@PathVariable String category) {
+         return ResponseEntity.ok(productService.getProductsByCatagorie(category));
     }
 
 
