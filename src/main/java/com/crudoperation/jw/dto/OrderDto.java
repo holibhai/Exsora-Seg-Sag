@@ -1,33 +1,25 @@
-package com.crudoperation.jw.model;
+package com.crudoperation.jw.dto;
 
+import com.crudoperation.jw.model.Billing;
+import com.crudoperation.jw.model.OrderItem;
+import com.crudoperation.jw.model.User;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "`order`")
-public class Order {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class OrderDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private float netTotal;
     private float offer;
     private String deliveryType;
-
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
     private User user;
-
-    @OneToOne
-    @JoinColumn(name = "billing_id",nullable = false)
     private Billing billing;
 
-    public Order(int id, float netTotal, float offer, String deliveryType, List<OrderItem> orderItems, User user, Billing billing) {
+    public OrderDto(int id, float netTotal, float offer, String deliveryType, List<OrderItem> orderItems, User user, Billing billing) {
         this.id = id;
         this.netTotal = netTotal;
         this.offer = offer;
@@ -37,15 +29,13 @@ public class Order {
         this.billing = billing;
     }
 
-    public Order() {
-
-    }
+    public OrderDto() {}
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,17 +54,6 @@ public class Order {
     public void setOffer(float offer) {
         this.offer = offer;
     }
-
-
-
-    public String getDeliveryType() {
-        return deliveryType;
-    }
-
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
-    }
-
 
 
     public List<OrderItem> getOrderItems() {
