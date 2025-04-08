@@ -88,5 +88,12 @@ public class ProductController {
          return ResponseEntity.ok(productService.getProductsByCatagorie(category));
     }
 
+    @GetMapping("/findProductsByProductType/{productType}")
+    public ResponseEntity<Response>getProductsByProductType(@PathVariable String productType) {
+        return ResponseEntity.ok(productService.getProductsByProductType(productType));
+    }
+
+
+
 
 }

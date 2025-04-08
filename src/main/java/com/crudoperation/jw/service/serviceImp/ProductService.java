@@ -165,4 +165,19 @@ public class ProductService {
         }
         return response;
     }
+
+    public Response getProductsByProductType(String productType) {
+        Response response=new Response();
+        try{
+            List<Product>products=productRepository.findProductByProductType(productType);
+            List<ProductDto>productDtos=Utils.mapProductListEntityToProductListDTO(products);
+            response.setStatusCode(200);
+            response.setMessage("Product list successfully");
+            response.setProductDtoList(productDtos);
+        }catch (OurException e) {
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
