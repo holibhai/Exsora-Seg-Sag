@@ -104,6 +104,13 @@ public class Utils {
         billingDto.setLastName(billing.getLastName());
         return billingDto;
     }
+    public static FavauriteDto mapFavauriteEntityToFavauriteDto(Favaurite favaurite){
+        FavauriteDto favauriteDto=new FavauriteDto();
+        favauriteDto.setId(favaurite.getId());
+        favauriteDto.setUser(favaurite.getUser());
+        favauriteDto.setProductId(favaurite.getProductId());
+        return favauriteDto;
+    }
     public static List<ProductDto> mapProductListEntityToProductListDTO(List<Product> productList) {
         return productList.stream().map(Utils::mapProductEntityToProductDto).collect(Collectors.toList());
     }
@@ -118,6 +125,16 @@ public class Utils {
     }
     public static List<DeliveryChargeDto>mapDeliveryChargeListEntityToDeliveryChargeListDTO(List<DeliveryCharge> deliveryChargeList) {
         return deliveryChargeList.stream().map(Utils::mapDeliveryChargeEntityToDeliveryChargeDto).collect(Collectors.toList());
+    }
+
+    public static List<OrderDto>mapOrderListEntityToOrderListDTO(List<Order> orderList) {
+        return orderList.stream().map(Utils::mapOrderEntityToOrderDto).collect(Collectors.toList());
+    }
+    public static List<BillingDto>mapBillingListEntityToBillingListDTO(List<Billing> billingList) {
+        return billingList.stream().map(Utils::mapBillingEntityToBillingDto).collect(Collectors.toList());
+    }
+    public static List<FavauriteDto>mapFavauriteEntityToFavauriteListDTO(List<Favaurite> favauriteList) {
+        return favauriteList.stream().map(Utils::mapFavauriteEntityToFavauriteDto).collect(Collectors.toList());
     }
 
 
