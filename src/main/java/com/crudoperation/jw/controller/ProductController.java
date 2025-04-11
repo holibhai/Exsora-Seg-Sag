@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.table.TableRowSorter;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,6 @@ public class ProductController {
         byte[] imageFile = product.getImageData();
 
         return ResponseEntity.ok().contentType(MediaType.valueOf(product.getImageType())).body(imageFile);
-
     }
 
 
@@ -61,8 +61,8 @@ public class ProductController {
     }
 
     @PutMapping("/update/{productId}")
-    public ResponseEntity<Response>updateProduct(@RequestPart Product product,@RequestPart(value = "file",required = false) MultipartFile imagefile,@PathVariable int productId) {
-        return ResponseEntity.ok(productService.updateProduct(product,imagefile,productId));
+    public ResponseEntity<Response>updateProduct(@RequestPart Product product,@RequestPart(value = "file",required = false) MultipartFile  imageFile,@PathVariable int productId) {
+        return ResponseEntity.ok(productService.updateProduct(product,imageFile,productId));
     }
 
     @GetMapping("/checkQuantity/{id}/{quantity}")
@@ -92,6 +92,12 @@ public class ProductController {
     public ResponseEntity<Response>getProductsByProductType(@PathVariable String productType) {
         return ResponseEntity.ok(productService.getProductsByProductType(productType));
     }
+
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<Response>deleteProduct(@PathVariable int productId) {
+        return ResponseEntity.ok(productService.deleteProduct(productId));
+    }
+
 
 
 

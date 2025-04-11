@@ -28,9 +28,9 @@ public class ProductService {
         System.out.println(product.getProductQuantity());
         System.out.println(product.getProductName());
         System.out.println(product.getProductDescription());
-        try{
+        try {
             System.out.println("dcniece");
-            if(imagefile != null && !imagefile.isEmpty()){
+            if (imagefile != null && !imagefile.isEmpty()) {
                 product.setImageName(imagefile.getOriginalFilename());
                 product.setImageType(imagefile.getContentType());
                 product.setImageData(imagefile.getBytes());
@@ -38,11 +38,10 @@ public class ProductService {
                 productRepository.save(product);
                 response.setStatusCode(200);
                 response.setMessage("Product added successfully");
-            }else{
+            } else {
                 response.setStatusCode(400);
                 response.setMessage("Image file is empty");
             }
-
 
 
         } catch (OurException e) {
@@ -56,19 +55,19 @@ public class ProductService {
     }
 
     public Product getProduct(int id) {
-         Optional<Product> product = productRepository.findById(id);
-         return product.orElse(null);
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElse(null);
     }
 
     public Response getAllProduct() {
-        Response response=new Response();
-        try{
-            List<Product> products=productRepository.findAll();
-            List<ProductDto> productDtos=Utils.mapProductListEntityToProductListDTO(products);
+        Response response = new Response();
+        try {
+            List<Product> products = productRepository.findAll();
+            List<ProductDto> productDtos = Utils.mapProductListEntityToProductListDTO(products);
             response.setStatusCode(200);
             response.setMessage("Product list successfully");
             response.setProductDtoList(productDtos);
-        }catch (OurException e) {
+        } catch (OurException e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
         }
@@ -76,72 +75,79 @@ public class ProductService {
 
     }
 
-    public Response updateProduct(Product product, MultipartFile imagefile, int productId) {
+    public Response updateProduct(Product product, MultipartFile imageFile, int productId) {
         Response response = new Response();
-        try{
+
+        try {
             Optional<Product> productOptional = productRepository.findById(productId);
-            if(productOptional.isPresent()){
-                if(imagefile!=null || !imagefile.isEmpty()) {
-                    productOptional.get().setImageName(imagefile.getOriginalFilename());
-                    productOptional.get().setImageType(imagefile.getContentType());
-                    productOptional.get().setImageData(imagefile.getBytes());
-                }
-
-                  productOptional.get().setProductQuantity(product.getProductQuantity());
-                  productOptional.get().setProductName(product.getProductName());
-                  productOptional.get().setProductType(product.getProductType());
-                  productOptional.get().setProductQuantity(product.getProductQuantity());
-                  productOptional.get().setDate(product.getDate());
-                  productOptional.get().setDescription(product.getDescription());
-                  productOptional.get().setProductQuantity(product.getProductQuantity());
-                  productOptional.get().setDepth(product.getDepth());
-                  productOptional.get().setHeight(product.getHeight());
-                  productOptional.get().setWidth(product.getWidth());
-                  productOptional.get().setCategory(product.getCategory());
-                  productOptional.get().setWarrantyInf(product.getWarrantyInf());
-
-                productRepository.save(productOptional.get());
-
-//                ProductDto productDto=Utils.mapProductEntityToProductDto(productOptional.get());
-                response.setStatusCode(200);
-                response.setMessage("Product updated successfully");
-
-//                response.setProductDto(productDto);
-
-
-
-
+            if (productOptional.isEmpty()) {
+                response.setStatusCode(404);
+                response.setMessage("Product not found");
+                return response;
             }
+
+            Product existingProduct = productOptional.get();
+
+            // Update image if provided
+            if (imageFile != null && !imageFile.isEmpty()) {
+                existingProduct.setImageName(imageFile.getOriginalFilename());
+                existingProduct.setImageType(imageFile.getContentType());
+                existingProduct.setImageData(imageFile.getBytes());
+            }
+
+            // Update product fields
+            existingProduct.setProductName(product.getProductName());
+            existingProduct.setProductPrice(product.getProductPrice());
+            existingProduct.setDiscount(product.getDiscount());
+            existingProduct.setProductQuantity(product.getProductQuantity());
+            existingProduct.setProductType(product.getProductType());
+            existingProduct.setDate(product.getDate());
+            existingProduct.setDescription(product.getDescription());
+            existingProduct.setDepth(product.getDepth());
+            existingProduct.setHeight(product.getHeight());
+            existingProduct.setWidth(product.getWidth());
+            existingProduct.setCategory(product.getCategory());
+            existingProduct.setWarrantyInf(product.getWarrantyInf());
+
+            productRepository.save(existingProduct);
+
+            response.setStatusCode(200);
+            response.setMessage("Product updated successfully");
+
         } catch (OurException e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            response.setStatusCode(500);
+            response.setMessage("Failed to process image");
+        }
+
+        return response;
+    }
+
+
+    public Response checkQuantity(int id, int quantity) {
+        Response response = new Response();
+        try {
+            int count = productRepository.findProductQuantityById(id);
+            if (count > quantity) {
+                response.setStatusCode(200);
+                response.setMessage("product available");
+            } else {
+                response.setStatusCode(400);
+                response.setMessage("product not available");
+                ProductDto productDto = new ProductDto();
+                productDto.setProductQuantity(count);
+                response.setProductDto(productDto);
+            }
+        } catch (OurException e) {
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+
         }
         return response;
     }
 
-    public Response checkQuantity(int id,int quantity) {
-          Response response = new Response();
-          try{
-              int count=productRepository.findProductQuantityById(id);
-              if(count>quantity){
-                  response.setStatusCode(200);
-                  response.setMessage("product available");
-              }else{
-                  response.setStatusCode(400);
-                  response.setMessage("product not available");
-                  ProductDto productDto=new ProductDto();
-                  productDto.setProductQuantity(count);
-                  response.setProductDto(productDto);
-              }
-          }catch (OurException e) {
-              response.setStatusCode(500);
-              response.setMessage(e.getMessage());
-
-          }
-          return response;
-    }
     public Product getProductWithMinimumPrice() {
         return productRepository.findTopByOrderByProductPriceAsc();
     }
@@ -151,15 +157,15 @@ public class ProductService {
     }
 
     public Response getProductsByCatagorie(String catagorie) {
-        Response response=new Response();
-        try{
-            List<Product>products=productRepository.findProductByCategory(catagorie);
-            List<ProductDto>productDtos=Utils.mapProductListEntityToProductListDTO(products);
+        Response response = new Response();
+        try {
+            List<Product> products = productRepository.findProductByCategory(catagorie);
+            List<ProductDto> productDtos = Utils.mapProductListEntityToProductListDTO(products);
             response.setStatusCode(200);
             response.setMessage("Product list successfully");
             response.setProductDtoList(productDtos);
 
-        }catch(OurException e){
+        } catch (OurException e) {
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
         }
@@ -167,17 +173,35 @@ public class ProductService {
     }
 
     public Response getProductsByProductType(String productType) {
-        Response response=new Response();
-        try{
-            List<Product>products=productRepository.findProductByProductType(productType);
-            List<ProductDto>productDtos=Utils.mapProductListEntityToProductListDTO(products);
+        Response response = new Response();
+        try {
+            List<Product> products = productRepository.findProductByProductType(productType);
+            List<ProductDto> productDtos = Utils.mapProductListEntityToProductListDTO(products);
             response.setStatusCode(200);
             response.setMessage("Product list successfully");
             response.setProductDtoList(productDtos);
-        }catch (OurException e) {
+        } catch (OurException e) {
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+
+        }
+        return response;
+    }
+
+    public Response deleteProduct(int id) {
+        Response response = new Response();
+        try{
+            productRepository.deleteById(id);
+            response.setStatusCode(200);
+            response.setMessage("Product deleted successfully");
+        }catch (OurException e){
             response.setStatusCode(500);
             response.setMessage(e.getMessage());
         }
         return response;
     }
+
 }
+
+
+
