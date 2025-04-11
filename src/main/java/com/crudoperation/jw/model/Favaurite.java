@@ -1,5 +1,6 @@
 package com.crudoperation.jw.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,8 +14,9 @@ public class Favaurite {
     private int id;
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
+    @JsonIgnore
     private User user;
 
     private int productId;
