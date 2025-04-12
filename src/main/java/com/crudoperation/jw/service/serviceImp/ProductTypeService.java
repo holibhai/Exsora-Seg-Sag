@@ -113,4 +113,21 @@ public class ProductTypeService {
     }
 
 
+    public Response getProductTypeById(int productTypeId) {
+        Response response = new Response();
+        try{
+            Optional<ProductType> productTypeOptional = productTypeRepository.findById(productTypeId);
+            if(productTypeOptional.isPresent()){
+                ProductTypeDto productTypeDto = Utils.mapProductTypeEntityToProductTypeDto(productTypeOptional.get());
+                response.setProductTypeDto(productTypeDto);
+                response.setStatusCode(200);
+                response.setMessage("Product type found successfully");
+
+            }
+        }catch (OurException e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
