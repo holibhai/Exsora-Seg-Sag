@@ -22,4 +22,17 @@ public class CatagorieController {
     public ResponseEntity<Response> getGatagorie(){
          return ResponseEntity.ok(catagorieService.getCatagorie());
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Response> updateCatagorie(@RequestBody Catagorie catagorie,@PathVariable int id){
+        return ResponseEntity.ok(catagorieService.updateCatagory(catagorie,id));
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Response> deleteCatagorie(@PathVariable int id){
+        return ResponseEntity.ok(catagorieService.deleteCatagory(id));
+    }
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Response>getCatagorie(@PathVariable int id){
+        return ResponseEntity.ok(catagorieService.getCatagory(id));
+    }
 }

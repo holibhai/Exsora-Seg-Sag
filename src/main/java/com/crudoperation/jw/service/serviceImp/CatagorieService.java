@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CatagorieService {
@@ -47,6 +48,57 @@ public class CatagorieService {
             response.setStatusCode(500);
             response.setMessage("Error");
 
+        }
+        return response;
+    }
+
+    public Response updateCatagory(Catagorie catagorie, int id) {
+        Response response = new Response();
+        try{
+            Optional<Catagorie> catagorie1=catagorieRepository.findById(id);
+            if(catagorie1.isPresent()){
+                Catagorie catagorie2=catagorie1.get();
+                catagorie2.setCatagorieDescription(catagorie.getCatagorieDescription());
+                catagorie2.setCatagorieType(catagorie.getCatagorieType());
+                catagorieRepository.save(catagorie2);
+                response.setMessage("Success");
+                response.setStatusCode(200);
+
+            }
+
+        }catch (OurException e){
+            response.setStatusCode(500);
+            response.setMessage("Error");
+        }
+        return response;
+    }
+
+    public Response deleteCatagory(int id) {
+        Response response = new Response();
+        try{
+            catagorieRepository.deleteById(id);
+            response.setMessage("Success");
+            response.setStatusCode(200);
+        }catch (OurException e){
+            response.setStatusCode(500);
+            response.setMessage("Error");
+        }
+        return response;
+    }
+
+    public Response getCatagory(int id) {
+        Response response=new Response();
+        try{
+            Optional<Catagorie>catagorie=catagorieRepository.findById(id);
+            if(catagorie.isPresent()){
+                response.setMessage("Success");
+                response.setStatusCode(200);
+                CatagorieDto catagorieDto=Utils.mapCatagorieEntityToCatagorieDto(catagorie.get());
+                response.setCatagorieDto(catagorieDto);
+            }
+        }catch(OurException e){
+            response.setStatusCode(500);
+            response.setMessage("Error");
         }
         return response;
     }
