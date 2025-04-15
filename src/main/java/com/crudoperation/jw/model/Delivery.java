@@ -1,5 +1,6 @@
 package com.crudoperation.jw.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -29,7 +30,9 @@ public class Delivery {
 
 
     @OneToOne(mappedBy = "delivery",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Billing billing;
+
 
 
 
