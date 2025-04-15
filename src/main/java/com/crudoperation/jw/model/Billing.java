@@ -1,5 +1,6 @@
 package com.crudoperation.jw.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,13 +20,16 @@ public class Billing {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+
     private User user;
 
     @OneToOne
     @JoinColumn(name = "delivery_id",nullable = false)
+
     private Delivery delivery;
 
     @OneToOne(mappedBy = "billing")
+    @JsonIgnore
     private Order order;
 
     public Billing(int id, String firstName, String lastName, String email, String mobileNumber, User user, Delivery delivery) {
