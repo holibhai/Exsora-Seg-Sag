@@ -37,6 +37,10 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Favaurite>favaurites;
+
 
 
     public User(int id, String firstName, String lastName, String username, String password, Role role, Address address) {

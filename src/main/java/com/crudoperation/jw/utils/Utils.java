@@ -92,6 +92,9 @@ public class Utils {
          orderDto.setBilling(order.getBilling());
          orderDto.setOrderItems(order.getOrderItems());
          orderDto.setNetTotal(order.getNetTotal());
+         orderDto.setOrderId(order.getOrderId());
+         orderDto.setOrderDate(order.getOrderDate());
+         orderDto.setOrderStatus(order.getOrderStatus());
          orderDto.setOffer(order.getOffer());
 //         orderDto.setUser(order.getUser());
          return orderDto;
