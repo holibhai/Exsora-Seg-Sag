@@ -5,10 +5,7 @@ import com.crudoperation.jw.model.OrderItem;
 import com.crudoperation.jw.service.serviceImp.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/orderItem")
@@ -17,8 +14,9 @@ public class OrderItemController {
     @Autowired
     private OrderItemService orderItemService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Response>addOrderItem(@RequestBody OrderItem orderItem) {
-        return ResponseEntity.ok(orderItemService.addOrderItem(orderItem));
+    @PostMapping("/add/{orderId}")
+    public ResponseEntity<Response>addOrderItem(@RequestBody OrderItem orderItem, @PathVariable int orderId) {
+        System.out.println(orderItem.getOrder());
+        return ResponseEntity.ok(orderItemService.addOrderItem(orderItem,orderId));
     }
 }
