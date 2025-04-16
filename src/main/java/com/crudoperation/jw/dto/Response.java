@@ -33,9 +33,10 @@ public class Response {
   private List<DeliveryChargeDto> deliveryChargeDtoList;
   private OrderDto orderDto;
   private List<OrderDto> orderDtoList;
+  private FavauriteDto favauriteDto;
+  private List<FavauriteDto> favauriteDtoList;
 
-
-    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList, BillingDto billingDto, DeliveryDto deliveryDto, DeliveryChargeDto deliveryChargeDto, List<DeliveryChargeDto> deliveryChargeDtoList, OrderDto orderDto, List<OrderDto> orderDtoList) {
+    public Response(UserAccountDto userAccount, int statusCode, String message, String token, Role role, List<UserAccountDto> userAccountDtoList, List<AddressDto> addressDtoList, UserAccountDto userAccountDto, AddressDto addressDto, ProductDto productDto, List<ProductDto> productDtoList, CatagorieDto catagorieDto, List<CatagorieDto> catagorieDtoList, ProductTypeDto productTypeDto, List<ProductTypeDto> productTypeDtoList, CartItemDto cartItemDto, List<CartItemDto> cartItemDtoList, BillingDto billingDto, DeliveryDto deliveryDto, DeliveryChargeDto deliveryChargeDto, List<DeliveryChargeDto> deliveryChargeDtoList, OrderDto orderDto, List<OrderDto> orderDtoList, FavauriteDto favauriteDto, List<FavauriteDto> favauriteDtoList) {
         this.userAccount = userAccount;
         this.statusCode = statusCode;
         this.message = message;
@@ -59,6 +60,8 @@ public class Response {
         this.deliveryChargeDtoList = deliveryChargeDtoList;
         this.orderDto = orderDto;
         this.orderDtoList = orderDtoList;
+        this.favauriteDto = favauriteDto;
+        this.favauriteDtoList = favauriteDtoList;
     }
 
     public Response(){}
@@ -250,5 +253,21 @@ public class Response {
 
     public void setOrderDtoList(List<OrderDto> orderDtoList) {
         this.orderDtoList = orderDtoList;
+    }
+
+    public FavauriteDto getFavauriteDto() {
+        return favauriteDto;
+    }
+
+    public void setFavauriteDto(FavauriteDto favauriteDto) {
+        this.favauriteDto = favauriteDto;
+    }
+
+    public List<FavauriteDto> getFavauriteDtoList() {
+        return favauriteDtoList;
+    }
+
+    public void setFavauriteDtoList(List<FavauriteDto> favauriteDtoList) {
+        this.favauriteDtoList = favauriteDtoList;
     }
 }
