@@ -100,4 +100,22 @@ public class OrderService {
         }
         return response;
     }
+
+    public Response updateStatus(int id, String status) {
+        Response response=new Response();
+        try{
+             Optional<Order> orderOptional = orderRepository.findById(id);
+             if(orderOptional.isPresent()){
+                 Order order1 = orderOptional.get();
+                 order1.setOrderStatus(status.toUpperCase());
+                 orderRepository.save(order1);
+                 response.setMessage("Success");
+                 response.setStatusCode(200);
+             }
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
