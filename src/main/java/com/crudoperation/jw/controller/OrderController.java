@@ -32,7 +32,8 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
     @PutMapping("/updateStatus")
-    public ResponseEntity<Response>updateStatus(@RequestParam int id,@RequestParam String status) {
+    public ResponseEntity<Response>updateStatus(@RequestParam("id") int id,@RequestParam("status") String status) {
+        System.out.println(id+" "+status);
         return ResponseEntity.ok(orderService.updateStatus(id,status));
 
     }
