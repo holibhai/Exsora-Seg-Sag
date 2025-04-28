@@ -35,6 +35,7 @@ public class OrderController {
     public ResponseEntity<Response>updateStatus(@RequestParam("id") int id,@RequestParam("status") String status) {
         System.out.println(id+" "+status);
         return ResponseEntity.ok(orderService.updateStatus(id,status));
-
     }
+
+
 }
