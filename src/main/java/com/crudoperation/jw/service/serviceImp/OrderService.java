@@ -121,5 +121,54 @@ public class OrderService {
     }
 
 
+    public Response getAllOrdersByUserId(int userId) {
+        Response response=new Response();
+        try{
+            List<Order> orders=orderRepository.findByUserId(userId);
+            response.setOrderDtoList(Utils.mapOrderListEntityToOrderListDTO(orders));
+            response.setMessage("Success");
+            response.setStatusCode(200);
 
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+
+    public Response getOrderByOrderId(String orderId) {
+        Response response=new Response();
+        try{
+            Optional<Order> orderOptional=orderRepository.findByOrderId(orderId);
+            if(orderOptional.isPresent()){
+                Order order1 = orderOptional.get();
+                response.setOrderDto(Utils.mapOrderEntityToOrderDto(order1));
+                response.setMessage("Success");
+                response.setStatusCode(200);
+
+            }
+
+        }catch(Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+
+    public Response deleteOrder(int id) {
+        Response response=new Response();
+        try{
+             Optional <Order> orderOptional=orderRepository.findById(id);
+             if(orderOptional.isPresent()){
+                 Order order1 = orderOptional.get();
+                 orderRepository.delete(order1);
+                 response.setMessage("Success");
+                 response.setStatusCode(200);
+             }
+        }catch(Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
