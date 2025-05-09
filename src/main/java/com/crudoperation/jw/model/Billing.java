@@ -28,7 +28,7 @@ public class Billing {
 
     private Delivery delivery;
 
-    @OneToOne(mappedBy = "billing")
+    @OneToOne(mappedBy = "billing",cascade = CascadeType.ALL)
     @JsonIgnore
     private Order order;
 
