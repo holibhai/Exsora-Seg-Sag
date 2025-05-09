@@ -36,6 +36,18 @@ public class OrderController {
         System.out.println(id+" "+status);
         return ResponseEntity.ok(orderService.updateStatus(id,status));
     }
+    @GetMapping("/getAllOrders/{userId}")
+    public ResponseEntity<Response>getAllOrdersByUserId(@PathVariable int userId) {
+        return ResponseEntity.ok(orderService.getAllOrdersByUserId(userId));
+    }
+    @GetMapping("/getOrderByOrderId/{orderId}")
+    public ResponseEntity<Response>getOrderByOrderId(@PathVariable String orderId) {
+        return ResponseEntity.ok(orderService.getOrderByOrderId(orderId));
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Response>deleteOrder(@PathVariable int id) {
+         return ResponseEntity.ok(orderService.deleteOrder(id));
+    }
 
 
 }
