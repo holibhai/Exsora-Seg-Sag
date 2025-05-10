@@ -39,4 +39,15 @@ public class BillingService {
         }
         return response;
     }
+
+    public Response deleteBilling(int id) {
+        Response response = new Response();
+        try{
+
+        }catch(Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
