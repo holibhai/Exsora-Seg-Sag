@@ -21,13 +21,16 @@ public class Review {
 
     private String createdDate;
 
-    public Review(int id, Long userId, Long productId, int rating, String comment, String createdDate) {
+    private String status;
+
+    public Review(int id, Long userId, Long productId, int rating, String comment, String createdDate, String status) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
         this.rating = rating;
         this.comment = comment;
         this.createdDate = createdDate;
+        this.status = status;
     }
 
     public Review() {
@@ -80,5 +83,13 @@ public class Review {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
