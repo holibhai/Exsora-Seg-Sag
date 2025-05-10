@@ -1,11 +1,14 @@
 package com.crudoperation.jw.controller;
 
 
+import com.crudoperation.jw.dto.Response;
 import com.crudoperation.jw.model.Review;
 import com.crudoperation.jw.service.serviceImp.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.ResponseCache;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,10 @@ public class ReviewController {
     public Review addReview(@RequestBody Review review) {
         return reviewService.addReview(review);
     }
+    @GetMapping("/getAll")
+    public List<Review> getAllReviews() {
+         return reviewService.getAllReviews();
+    }
 
     @GetMapping("/product/{productId}")
     public List<Review> getReviewsByProduct(@PathVariable Long productId) {
@@ -29,5 +36,8 @@ public class ReviewController {
     public List<Review> getReviewsByUser(@PathVariable Long userId) {
         return reviewService.getReviewsByUserId(userId);
     }
-
+    @PutMapping("/status/{id}")
+    public Review updateReviewStatus(@PathVariable int id) {
+        return reviewService.updateStatus(id);
+    }
 }
