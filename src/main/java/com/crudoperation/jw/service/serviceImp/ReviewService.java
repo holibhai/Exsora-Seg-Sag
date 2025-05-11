@@ -55,4 +55,13 @@ public class ReviewService {
         return null;
 
     }
+
+    public String deleteReview(int id) {
+         Optional<Review> review = reviewRepository.findById(id);
+         if(review.isPresent()) {
+             reviewRepository.delete(review.get());
+             return "success";
+         }
+         return "fail";
+    }
 }
