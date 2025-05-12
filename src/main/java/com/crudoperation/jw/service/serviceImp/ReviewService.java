@@ -38,8 +38,8 @@ public class ReviewService {
         Optional<Review> review = reviewRepository.findById(id);
         if(review.isPresent()) {
             Review review1 = review.get();
-            review1.setComment("saddi");
-            System.out.println(review1.getStatus());
+
+
             if (review1.getStatus().equals("not post")) {
                 review1.setStatus("post");
                 return reviewRepository.save(review1);
