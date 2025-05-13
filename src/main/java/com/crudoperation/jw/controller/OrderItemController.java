@@ -19,4 +19,8 @@ public class OrderItemController {
         System.out.println(orderItem.getOrder());
         return ResponseEntity.ok(orderItemService.addOrderItem(orderItem,orderId));
     }
+    public ResponseEntity<Response>updateOrderItem(@RequestBody OrderItem orderItem, @PathVariable int orderId) {
+        System.out.println(orderItem.getOrder());
+        return null;
+    }
 }
