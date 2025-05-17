@@ -23,4 +23,8 @@ public class FavauriteController {
     public ResponseEntity<Response>getFavaurite(@PathVariable int userId){
         return ResponseEntity.ok(favauriteService.getProducts(userId));
     }
+    @DeleteMapping("/delete/{usesrId}/{productId}")
+    public ResponseEntity<Response>deleteFavaurite(@PathVariable int userId,@PathVariable int productId){
+         return ResponseEntity.ok(favauriteService.deleteFav(userId,productId));
+    }
 }
