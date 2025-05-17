@@ -55,4 +55,20 @@ public class FavauriteService {
         }
         return response;
     }
+
+    public Response deleteFav(int userId, int productId) {
+        Response response = new Response();
+        try{
+            Optional<Favaurite> favaurite=favauriteRepository.findById(productId);
+            if(favaurite.isPresent()){
+                favauriteRepository.delete(favaurite.get());
+                response.setMessage("Success");
+                response.setStatusCode(200);
+            }
+        }catch (Exception e){
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }
